@@ -1,0 +1,47 @@
+[
+ {
+  "id": 1,
+  "say": "Hook line goes here, one short sentence.",
+  "zh": "開場吸睛句。",
+  "img": "a.jpg",
+  "tag": "AI News",
+  "title": "Title max 22 chars",
+  "sub": "Subtitle max 32 characters"
+ },
+ {
+  "id": 2,
+  "say": "Explain what happened, who, and where.",
+  "zh": "說明發生什麼事。",
+  "img": "b.jpg",
+  "tag": "What happened",
+  "title": "The story",
+  "sub": "Key number or date"
+ },
+ {
+  "id": 3,
+  "say": "Explain why it matters.",
+  "zh": "說明為什麼重要。",
+  "img": "c.jpg",
+  "tag": "Why it matters",
+  "title": "The impact",
+  "sub": "One-line takeaway"
+ },
+ {
+  "id": 4,
+  "say": "What do you think? Tell us in the comments.",
+  "zh": "你怎麼看？留言告訴我們。",
+  "img": "c.jpg",
+  "tag": "Your take",
+  "title": "Comment below",
+  "sub": "互動問題"
+ },
+ {
+  "id": 5,
+  "say": "Follow Devon for global AI intelligence, four times a day.",
+  "zh": "追蹤 Devon，每天四次全球 AI 情報。",
+  "img": null,
+  "tag": "",
+  "title": "",
+  "sub": ""
+ }
+]
