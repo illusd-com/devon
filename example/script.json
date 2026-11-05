@@ -1,0 +1,9 @@
+[
+  {"id":1,"say":"OpenAI 正式發布 GPT 五點一，推理能力大幅躍升。","en":"OpenAI officially releases GPT-5.1 with major gains in reasoning.","img":"a.jpg","tag":"新模型","title":"GPT-5.1 來了","sub":"推理能力大幅提升"},
+  {"id":2,"say":"這次更新重點在長鏈思考與工具使用，官方表示在多項基準測試超越前代。","en":"The update focuses on long-chain thinking and tool use, beating the previous generation on multiple benchmarks.","img":"a.jpg","tag":"發生什麼事","title":"長鏈思考強化","sub":"多項基準全面超越"},
+  {"id":3,"say":"對開發者來說，代表可以用更少提示完成複雜任務，也讓代理系統更可靠。","en":"For developers, it means complex tasks with fewer prompts and more reliable agent systems.","img":"b.jpg","tag":"為什麼重要","title":"開發者受惠","sub":"代理系統更可靠"},
+  {"id":4,"say":"API 已開放部分企業搶先體驗，一般使用者預計下個月陸續解鎖。","en":"The API is open for select enterprises; general users are expected next month.","img":"b.jpg","tag":"最新進展","title":"企業搶先用","sub":"下個月開放更多"},
+  {"id":5,"say":"同時開源社群也在討論如何把類似能力移植到本地模型。","en":"The open-source community is already discussing how to bring similar capabilities to local models.","img":"c.jpg","tag":"社群反應","title":"開源怎麼跟","sub":"本地模型移植討論"},
+  {"id":6,"say":"你會第一時間升級嗎？留言告訴我們。","en":"Will you upgrade right away? Tell us in the comments.","img":"c.jpg","tag":"你怎麼看","title":"留言告訴我們","sub":"互動問題"},
+  {"id":7,"say":"追蹤 Devon，每天四次全球 AI 情報。","en":"Follow Devon for global AI intelligence, four times a day.","img":null,"tag":"","title":"","sub":""}
+]

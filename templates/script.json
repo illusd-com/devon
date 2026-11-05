@@ -1,0 +1,9 @@
+[
+  {"id":1,"say":"這裡是第一句，用一句話抓住注意力。","en":"This is the hook line that grabs attention.","img":"a.jpg","tag":"AI 新聞","title":"大標題十字內","sub":"副標十六字以內的重點"},
+  {"id":2,"say":"第二段交代發生什麼事，誰、在哪裡、做了什麼。","en":"Segment two explains what happened: who, where, and what.","img":"a.jpg","tag":"發生什麼事","title":"事件經過","sub":"關鍵數字或日期"},
+  {"id":3,"say":"第三段說明影響，對產業或一般人代表什麼。","en":"Segment three explains the impact on the industry or on people.","img":"b.jpg","tag":"為什麼重要","title":"誰受影響","sub":"一句話說重點"},
+  {"id":4,"say":"第四段放技術亮點或各方回應。","en":"Segment four covers technical highlights or responses.","img":"b.jpg","tag":"技術亮點","title":"關鍵細節","sub":"引述重點"},
+  {"id":5,"say":"第五段交代最新進展，以及接下來要觀察什麼。","en":"Segment five gives the latest update and what to watch next.","img":"c.jpg","tag":"最新進展","title":"下一步","sub":"時間點或觀察指標"},
+  {"id":6,"say":"你怎麼看？留言告訴我們。","en":"What do you think? Tell us in the comments.","img":"c.jpg","tag":"你怎麼看","title":"留言告訴我們","sub":"互動問題"},
+  {"id":7,"say":"追蹤 Devon，每天四次全球 AI 情報。","en":"Follow Devon for global AI intelligence, four times a day.","img":null,"tag":"","title":"","sub":""}
+]
