@@ -1,0 +1,97 @@
+name: Devon Daily Pipeline
+
+on:
+  schedule:
+    - cron: "30 21 * * *"
+    - cron: "30 2 * * *"
+    - cron: "30 7 * * *"
+    - cron: "30 10 * * *"
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: "Slot (06:00 / 11:00 / 16:00 / 19:00)"
+        required: true
+        default: "11:00"
+        type: choice
+        options: ["06:00", "11:00", "16:00", "19:00"]
+      dry_run:
+        description: "Script only, no publish"
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  run-slot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Install Python deps
+        run: |
+          pip install -r pipeline/requirements.txt
+          pip install requests edge-tts pillow numpy
+      - name: Determine slot
+        id: slot
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            SLOT="${{ inputs.slot }}"
+          else
+            HOUR=$(date -u +%H)
+            case "$HOUR" in
+              21) SLOT="06:00" ;;
+              02) SLOT="11:00" ;;
+              07) SLOT="16:00" ;;
+              10) SLOT="19:00" ;;
+              *)  SLOT="11:00" ;;
+            esac
+          fi
+          echo "slot=$SLOT" >> $GITHUB_OUTPUT
+          DATE=$(TZ=Asia/Taipei date +%Y.%m.%d)
+          DATE_DIR=$(TZ=Asia/Taipei date +%Y%m%d)
+          SLOT_SAFE=$(echo "$SLOT" | tr -d ':')
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+          echo "out_dir=reels/${DATE_DIR}_${SLOT_SAFE}" >> $GITHUB_OUTPUT
+          echo "Using slot=$SLOT date=$DATE"
+      - name: Collect candidate news
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+        run: |
+          mkdir -p "${{ steps.slot.outputs.out_dir }}"
+          python3 pipeline/collect_news.py \
+            --slot "${{ steps.slot.outputs.slot }}" \
+            --out "${{ steps.slot.outputs.out_dir }}/candidates.txt" || true
+          if [ ! -s "${{ steps.slot.outputs.out_dir }}/candidates.txt" ]; then
+            echo "Placeholder news for ${{ steps.slot.outputs.slot }}" > "${{ steps.slot.outputs.out_dir }}/candidates.txt"
+          fi
+      - name: Generate script with NVIDIA Step-5
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+        run: |
+          python3 pipeline/generate_script.py \
+            --slot "${{ steps.slot.outputs.slot }}" \
+            --news "${{ steps.slot.outputs.out_dir }}/candidates.txt" \
+            --out-dir "${{ steps.slot.outputs.out_dir }}" \
+            --date "${{ steps.slot.outputs.date }}"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: devon-${{ steps.slot.outputs.slot }}-${{ github.run_id }}
+          path: |
+            ${{ steps.slot.outputs.out_dir }}/script.json
+            ${{ steps.slot.outputs.out_dir }}/meta.json
+            ${{ steps.slot.outputs.out_dir }}/caption.txt
+            ${{ steps.slot.outputs.out_dir }}/candidates.txt
+          retention-days: 14
+      - name: Summary
+        run: |
+          echo "## Devon ${{ steps.slot.outputs.slot }} done" >> $GITHUB_STEP_SUMMARY
+          echo "- date: ${{ steps.slot.outputs.date }}" >> $GITHUB_STEP_SUMMARY
+          echo "- out: \`${{ steps.slot.outputs.out_dir }}\`" >> $GITHUB_STEP_SUMMARY
