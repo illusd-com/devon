@@ -1,0 +1,25 @@
+# Secrets / local env
+.env
+.env.*
+*.pem
+
+# Generated reels
+reels/
+**/audio/
+**/reel.mp4
+**/cover.jpg
+**/preview_*.png
+**/video.mp4
+**/audio_full.wav
+**/zernio_result.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pylib/
+
+# OS
+.DS_Store
+Thumbs.db

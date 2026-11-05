@@ -1,0 +1,18 @@
+{
+  "name": "Devon Reels Kit",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/ffmpeg-utils:1": {}
+  },
+  "postCreateCommand": "pip install -r pipeline/requirements.txt && sudo apt-get update && sudo apt-get install -y ffmpeg",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "remoteUser": "vscode"
+}
